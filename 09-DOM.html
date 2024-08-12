@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>DOM Projects</title>
+        
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .Subscribe-button{
+                border:none;
+                background-color: black;
+                padding: 15px;
+                border-radius: 40px;
+                font-weight: bold;
+                cursor: pointer;
+                color: white;
+                margin-bottom: 50px ;
+            }
+
+            .is-subscribed{
+                background-color: red;
+                color: white;
+
+            }
+            .cost-input{
+                font-size: 15px;
+                padding: 7px;
+            
+            }
+            .calculate-button{
+                background-color: black;
+                color: white;
+                font-size: 14px;
+                padding: 8px 20px;
+                cursor: pointer;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <p>
+            YouTube Subscribe Button
+        </p>
+        <button onclick="
+           Subscribe();
+        " class="js-Subscribe-button Subscribe-button"> 
+        Subscribe        
+        </button>
+
+        <p>
+            Amazon Shipping Calculator
+        </p>
+
+        <input placeholder="Cost of order" class="js-cost-input cost-input" onkeydown="
+        handleCostKeyDown(event);
+        ">
+        <button onclick="
+        calculateTotal();
+        " class="calculate-button">Calculate</button>   
+        <p class="js-total-cost"></p>
+        
+        
+     <script>
+        String(25)  //converts a number/value into a string   
+        console.log('25' - 5);      
+        console.log('25' + 5);
+        
+       /* window.document
+        window.console.log('window');
+        window.alert
+        javascript automatically adds window without us adding it externally
+        */
+            function handleCostKeyDown(event){
+            if(event.key === 'Enter'){
+            calculateTotal();
+        }
+        }
+        function calculateTotal(){
+           const inputElement =  document.querySelector('.js-cost-input');
+          let cost = Number(inputElement.value);//whenever we get a value from the dom , the value will be a string
+          console.log(cost);
+          console.log(typeof cost);
+
+            if(cost < 40 && cost > 0){
+                cost = cost + 10;
+            }
+
+            document.querySelector('.js-total-cost').innerHTML = `$${cost}`;
+
+        }
+
+
+
+        function Subscribe() {
+            const buttonElement =  document.querySelector('.js-Subscribe-button');
+
+            if(buttonElement.innerText === 'Subscribe'){ /* if we use innerText instead of innerHTML then it 
+                 will work even with those spaces*/
+                buttonElement.innerHTML
+                = 'Subscribed';
+                buttonElement.classList.add('is-subscribed');
+            }
+            else{
+                buttonElement.innerHTML = 'Subscribe';//there shouldl be no spaces around our texts \
+                buttonElement.classList.remove('is-subscribed');
+            }
+
+        }
+     </script>   
+
+    </body>
+
+</html>
